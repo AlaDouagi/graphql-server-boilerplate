@@ -45,17 +45,20 @@ const resolvers = {
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  logger: true,
 });
 
 const app = fastify();
 
-await server.start();
+async function launch() {
+  await server.start();
 
-console.log('Server started 🚀');
+  console.log('Server started 🚀');
 
-app.register(server.createHandler());
+  app.register(server.createHandler());
 
-await app.listen();
+  await app.listen(PORT);
 
-console.log(`App listening on port ${PORT} ✔️`);
+  console.log(`App listening on port ${PORT} ✔️`);
+}
+
+launch();

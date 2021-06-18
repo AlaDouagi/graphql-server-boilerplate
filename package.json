@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "tsc && node dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,5 +13,11 @@
   "dependencies": {
     "apollo-server-fastify": "^3.0.0-preview.2",
     "graphql": "^15.5.0"
+  },
+  "devDependencies": {
+    "@tsconfig/node16": "^1.0.1",
+    "@types/node": "^15.12.3",
+    "tslint": "^6.1.3",
+    "typescript": "^4.3.4"
   }
 }
