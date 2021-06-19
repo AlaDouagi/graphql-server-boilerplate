@@ -6,6 +6,8 @@
   "scripts": {
     "start": "tsc && node dist",
     "dev": "tsnd --respawn --transpile-only src",
+    "up:dev": "docker-compose up",
+    "up:prod": "docker-compose -f docker-compose.yml up",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

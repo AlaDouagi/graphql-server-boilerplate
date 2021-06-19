@@ -15,6 +15,7 @@ services:
       context: .
       dockerfile: Dockerfile.api
     env_file:
+      - .env
       - api.env
     ports:
       - '${API_PORT:-4000}:${API_PORT:-4000}'

@@ -1,7 +1,7 @@
 import fastify from 'fastify';
 import { ApolloServer, gql } from 'apollo-server-fastify';
 
-const PORT = 4000;
+const API_PORT = Number(process?.env?.API_PORT) || 4000;
 
 // A schema is a collection of type definitions (hence "typeDefs")
 // that together define the "shape" of queries that are executed against
@@ -56,9 +56,9 @@ async function launch() {
 
   app.register(server.createHandler());
 
-  await app.listen(PORT);
+  await app.listen(API_PORT, '0.0.0.0');
 
-  console.log(`App listening on port ${PORT} ✔️`);
+  console.log(`App listening on port ${API_PORT} ✔️`);
 }
 
 launch();
