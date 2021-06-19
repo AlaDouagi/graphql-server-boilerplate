@@ -10,6 +10,8 @@
     "up:prod": "docker-compose -f docker-compose.yml up",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev --name init",
+    "prisma:migrate:dev": "prisma migrate dev",
+    "prisma:migrate:reset": "prisma migrate reset",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src/**/*.ts",
     "format": "eslint src/**/*.ts --fix",
