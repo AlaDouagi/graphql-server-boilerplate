@@ -8,10 +8,10 @@ on:
       region:
         description: "AWS Region"
         required: true
-        default: "ap-southeast-2"
-      bucketName:
-        description: "S3 Bucket Name"
-        required: true
+        default: "eu-west-2"
+      # X:
+      #   description: "X description"
+      #   required: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
