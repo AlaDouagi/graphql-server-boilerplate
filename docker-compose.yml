@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   database:
-    image: 'postgres:13.3-alpine' # use latest official postgres version
+    image: 'postgres:13-alpine' # use latest official postgres version
     env_file:
       - database.env # configure postgres
     volumes:
