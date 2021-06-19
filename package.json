@@ -8,7 +8,9 @@
     "dev": "tsnd --respawn --transpile-only src",
     "up:dev": "docker-compose up",
     "up:prod": "docker-compose -f docker-compose.yml up",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src/**/*.ts",
+    "format": "eslint src/**/*.ts --fix"
   },
   "keywords": [],
   "author": "",
@@ -20,8 +22,10 @@
   "devDependencies": {
     "@tsconfig/node16": "^1.0.1",
     "@types/node": "^15.12.3",
+    "@typescript-eslint/eslint-plugin": "^4.27.0",
+    "@typescript-eslint/parser": "^4.27.0",
+    "eslint": "^7.29.0",
     "ts-node-dev": "^1.1.6",
-    "tslint": "^6.1.3",
     "typescript": "^4.3.4"
   }
 }
