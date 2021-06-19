@@ -8,5 +8,22 @@ services:
       - database-data:/var/lib/postgresql/data/ # persist data even if container shuts down
     ports:
       - '${DB_PORT:-5432}:${DB_PORT:-5432}'
+  api:
+    networks:
+      - api_server_default
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    env_file:
+      - api.env
+    ports:
+      - '${API_PORT:-4000}:${API_PORT:-4000}'
+    links:
+        - database
+    depends_on: 
+        - database
 volumes:
   database-data: # named volumes can be managed easier using docker-compose
+networks:
+  api_server_default:
+    driver: bridge

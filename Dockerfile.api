@@ -1,0 +1,25 @@
+FROM node:16-alpine
+
+# Default Env
+ENV API_TIME_ZONE Etc/GMT
+ENV API_PORT 4000
+ENV NODE_ENV dev
+ENV NODE_CONFIG_ENV dev
+
+# Set the timezone in docker
+RUN apk --update add tzdata &&\
+   cp /usr/share/zoneinfo/$API_TIME_ZONE /etc/localtime &&\
+   echo $API_TIME_ZONE > /etc/timezone &&\
+   apk del tzdata
+# Create Directory for the Container
+WORKDIR /usr/src
+# Only copy the package.json file to work directory
+COPY package.json .
+# Install all Packages
+RUN npm install
+# Copy all other source code to work directory
+ADD . /usr/src
+# Start
+RUN ["chmod", "+x", "scripts/start.sh"]
+CMD ["./scripts/start.sh"]
+EXPOSE $API_PORT
