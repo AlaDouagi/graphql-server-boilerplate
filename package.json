@@ -10,7 +10,8 @@
     "up:prod": "docker-compose -f docker-compose.yml up",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src/**/*.ts",
-    "format": "eslint src/**/*.ts --fix"
+    "format": "eslint src/**/*.ts --fix",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +26,8 @@
     "@typescript-eslint/eslint-plugin": "^4.27.0",
     "@typescript-eslint/parser": "^4.27.0",
     "eslint": "^7.29.0",
+    "husky": "^6.0.0",
+    "prettier": "^2.3.1",
     "ts-node-dev": "^1.1.6",
     "typescript": "^4.3.4"
   }

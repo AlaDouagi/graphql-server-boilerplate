@@ -1,5 +1,5 @@
-import fastify from 'fastify';
-import { ApolloServer, gql } from 'apollo-server-fastify';
+import fastify from "fastify";
+import { ApolloServer, gql } from "apollo-server-fastify";
 
 const API_PORT = Number(process?.env?.API_PORT) || 4000;
 
@@ -25,12 +25,12 @@ const typeDefs = gql`
 
 const books = [
   {
-    title: 'The Awakening',
-    author: 'Kate Chopin',
+    title: "The Awakening",
+    author: "Kate Chopin",
   },
   {
-    title: 'City of Glass',
-    author: 'Paul Auster',
+    title: "City of Glass",
+    author: "Paul Auster",
   },
 ];
 
@@ -52,11 +52,11 @@ const app = fastify();
 async function launch() {
   await server.start();
 
-  console.log('Server started 🚀');
+  console.log("Server started 🚀");
 
   app.register(server.createHandler());
 
-  await app.listen(API_PORT, '0.0.0.0');
+  await app.listen(API_PORT, "0.0.0.0");
 
   console.log(`App listening on port ${API_PORT} ✔️`);
 }
