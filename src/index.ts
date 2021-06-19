@@ -32,6 +32,7 @@ const typeDefs = gql`
 
   type Mutation {
     createBook(book: BookInput): Book
+    deleteBook(bookId: ID): Book
   }
 `;
 
@@ -46,6 +47,12 @@ const resolvers = {
   Mutation: {
     createBook: (_parent, args: { book: Omit<Book, "id"> }, _context, _info) =>
       prisma.book.create({ data: args.book }),
+    deleteBook: (_parent, args: { bookId: string }, _context, _info) =>
+      prisma.book.delete({
+        where: {
+          id: args.bookId,
+        },
+      }),
   },
 };
 
