@@ -8,6 +8,8 @@ services:
       - database-data:/var/lib/postgresql/data/ # persist data even if container shuts down
     ports:
       - '${DB_PORT:-5432}:${DB_PORT:-5432}'
+    networks:
+      - api_server_default
   api:
     networks:
       - api_server_default

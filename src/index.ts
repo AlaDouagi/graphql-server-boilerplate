@@ -1,5 +1,6 @@
 import fastify from "fastify";
 import { ApolloServer, gql } from "apollo-server-fastify";
+import { Book, PrismaClient } from "@prisma/client";
 
 const API_PORT = Number(process?.env?.API_PORT) || 4000;
 
@@ -11,6 +12,13 @@ const typeDefs = gql`
 
   # This "Book" type defines the queryable fields for every book in our data source.
   type Book {
+    id: ID
+    title: String
+    author: String
+  }
+
+  input BookInput {
+    id: ID
     title: String
     author: String
   }
@@ -21,24 +29,23 @@ const typeDefs = gql`
   type Query {
     books: [Book]
   }
+
+  type Mutation {
+    createBook(book: BookInput): Book
+  }
 `;
 
-const books = [
-  {
-    title: "The Awakening",
-    author: "Kate Chopin",
-  },
-  {
-    title: "City of Glass",
-    author: "Paul Auster",
-  },
-];
+const prisma = new PrismaClient();
 
 // Resolvers define the technique for fetching the types defined in the
 // schema. This resolver retrieves books from the "books" array above.
 const resolvers = {
   Query: {
-    books: () => books,
+    books: () => prisma.book.findMany(),
+  },
+  Mutation: {
+    createBook: (_parent, args: { book: Omit<Book, "id"> }, _context, _info) =>
+      prisma.book.create({ data: args.book }),
   },
 };
 
