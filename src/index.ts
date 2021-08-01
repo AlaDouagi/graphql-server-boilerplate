@@ -1,32 +1,13 @@
 import fastify from "fastify";
 import { ApolloServer } from "apollo-server-fastify";
-import { Book, PrismaClient } from "@prisma/client";
 import { loadSchemaSync } from "@graphql-tools/load";
 import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
 import { addResolversToSchema } from "@graphql-tools/schema";
 import { join } from "path";
 
+import * as resolvers from "./resolvers";
+
 const API_PORT = Number(process.env.API_PORT) || 4000;
-
-const prisma = new PrismaClient();
-
-// Resolvers define the technique for fetching the types defined in the
-// schema. This resolver retrieves books from the "books" array above.
-const resolvers = {
-  Query: {
-    books: () => prisma.book.findMany(),
-  },
-  Mutation: {
-    createBook: (_parent, args: { book: Omit<Book, "id"> }, _context, _info) =>
-      prisma.book.create({ data: args.book }),
-    deleteBook: (_parent, args: { bookId: string }, _context, _info) =>
-      prisma.book.delete({
-        where: {
-          id: args.bookId,
-        },
-      }),
-  },
-};
 
 const schema = loadSchemaSync(join(__dirname, "./schema.graphql"), {
   loaders: [new GraphQLFileLoader()],
