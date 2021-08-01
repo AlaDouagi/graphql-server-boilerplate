@@ -1,3 +1,4 @@
+import 'module-alias/register';
 import fastify from "fastify";
 import { ApolloServer } from "apollo-server-fastify";
 import { loadSchemaSync } from "@graphql-tools/load";

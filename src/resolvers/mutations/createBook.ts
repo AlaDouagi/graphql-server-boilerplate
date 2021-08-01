@@ -1,7 +1,7 @@
 import { Book } from "@prisma/client";
 import { IFieldResolver } from "@graphql-tools/utils";
 
-import { prisma } from "../../prisma.client";
+import { prisma } from "@common/prisma.client";
 
 export const createBook: IFieldResolver<
   unknown,
