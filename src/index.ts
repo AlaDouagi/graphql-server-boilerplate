@@ -1,16 +1,18 @@
-import 'module-alias/register';
-import fastify from "fastify";
+import { join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+import { default as fastify } from "fastify";
 import { ApolloServer } from "apollo-server-fastify";
-import { loadSchemaSync } from "@graphql-tools/load";
+import { loadSchema } from "@graphql-tools/load";
 import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
 import { addResolversToSchema } from "@graphql-tools/schema";
-import { join } from "path";
 
-import * as resolvers from "./resolvers";
+import * as resolvers from "./resolvers/index.js";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const API_PORT = Number(process.env.API_PORT) || 4000;
 
-const schema = loadSchemaSync(join(__dirname, "./schema.graphql"), {
+const schema = await loadSchema(join(__dirname, "./schema.graphql"), {
   loaders: [new GraphQLFileLoader()],
 });
 
@@ -25,16 +27,12 @@ const server = new ApolloServer({
 
 const app = fastify();
 
-async function launch() {
-  await server.start();
+await server.start();
 
-  console.log("Server started 🚀");
+console.log("Server started 🚀");
 
-  app.register(server.createHandler());
+app.register(server.createHandler());
 
-  await app.listen(API_PORT, "0.0.0.0");
+await app.listen(API_PORT, "0.0.0.0");
 
-  console.log(`App listening on port ${API_PORT} ✔️`);
-}
-
-launch();
+console.log(`App listening on port ${API_PORT} ✔️`);
