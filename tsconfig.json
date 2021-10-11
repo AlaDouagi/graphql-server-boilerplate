@@ -1,11 +1,13 @@
 {
-  "extends": "@tsconfig/node16/tsconfig.json",
+  "ts-node": {
+    "files": true
+  },
   "compilerOptions": {
+    "esModuleInterop": true,
+    "module": "nodenext",
+    "target": "ES2021",
     "sourceMap": true,
     "outDir": "dist",
-    "baseUrl": "./src",
-    "paths": {
-      "@common/*": ["common/*"]
-    }
-  }
+    "baseUrl": "./src"
+  },
 }

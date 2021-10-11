@@ -1,2 +1,2 @@
-export * as Query from "./queries";
-export * as Mutation from "./mutations";
+export * as Query from "./queries/index.js";
+export * as Mutation from "./mutations/index.js";
