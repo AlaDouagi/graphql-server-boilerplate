@@ -1,5 +1,5 @@
 {
-  "name": "apollo-server-3-playground",
+  "name": "graphql-server-boilerplate",
   "version": "1.0.0",
   "type": "module",
   "description": "",
@@ -21,9 +21,16 @@
     "format": "eslint src/**/*.ts --fix",
     "prepare": "husky install"
   },
-  "keywords": [],
+  "keywords": [
+    "graphql",
+    "apollo-server-3",
+    "fastify",
+    "typescript",
+    "esm",
+    "prisma"
+  ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@graphql-tools/graphql-file-loader": "^7.3.0",
     "@graphql-tools/load": "^7.3.2",
