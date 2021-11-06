@@ -6,6 +6,7 @@ import { loadSchema } from "@graphql-tools/load";
 import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
 import { addResolversToSchema } from "@graphql-tools/schema";
 
+import { prisma } from "./common/prisma.client.js";
 import * as resolvers from "./resolvers/index.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -23,6 +24,9 @@ const schemaWithResolvers = addResolversToSchema({
 
 const server = new ApolloServer({
   schema: schemaWithResolvers,
+  context: () => ({
+    prisma,
+  }),
 });
 
 const app = fastify();
