@@ -1,1 +1,7 @@
-declare type GraphQLApiContext = Record<string, unknown>;
+import type { PrismaClient } from "@prisma/client";
+
+declare global {
+  type GraphQLApiContext = {
+    prisma: PrismaClient;
+  };
+}
